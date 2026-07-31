@@ -1,0 +1,241 @@
+---
+title: "Voluntary Water Conservation Program for Lake Mead: Current Account Balances, Credits, and Debits"
+author: "David E. Rosenberg"
+date: "January 12, 2026"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Description
+
+This is an R Markdown document. Plots Lake Mead water conservation account balances, deposits/withdraws, limits, and other data for the Lake Mead water conservation program. 
+
+Within the Colorado River basin, the Lake Mead water conservation program is called Intentionally Created Surplus (ICS) program for Lake Mead. The program is defined in the 2007 Interim Guidelines and 2019 Drought Contingency Plans (Reclamation, 2007; 2019). In the voluntary conservation program, states reduce use from their historical allocations, leave the conserved water in Lake Mead, and withdraw the conserved water at a future date under certain restrictions. 
+
+The plots also compare the water account balances to withdraw limits and mandatory conservation targets. The plots support the analysis of the work: "Lake Mead Water Conservation Accounts: Examples, Successes, Challenges, and Potential Improvements post 2026."
+
+## Figures
+
+Figure 1. A stacked bar chart compares voluntary conservation account balances by state and year. These balances are compared to the overall and individual state max balances allowed by the 2007 Interim Guidelines and 2019 Drought Contingency Plan (DCP). 
+
+Figure 2 A stacked bar chart compares annual voluntary water conservation efforts by state. Credits are shown as positive and withdraws as negative. These credits and debits are compared to the maximum allowed amounts.
+
+Additional Figures - see ICS-Plots.r file.
+
+
+## Data and References
+
+1. USBR. (2019). "Agreement Concerning Colorado River Drought Contingency Management and Operations." U.S. Bureau of Reclamation, Washington, DC. https://www.usbr.gov/dcp/finaldocs.html
+1. USBR. (2007). "Record of Decision: Colorado River Interim Guidelines for Lower Basin Shortages and Coordinated Operations for Lakes Powell and Mead." U.S. Bureau of Reclamation. https://www.usbr.gov/lc/region/programs/strategies/RecordofDecision.pdf.
+1. USBR (2024). "Boulder Canyon Operations Office - Program and Activities: Water Accounting Reports". https://www.usbr.gov/lc/region/g4000/wtracct.
+html. These annual reports are aggregated in the Excel file **IntentionallyCreatedSurplus-Summary.xlsx**from USBR annual accounting reports: https://www.usbr.gov/lc/region/g4000/wtracct.html. Note most recent data is for 2023. 
+
+## Observations
+
+1. The water conservation accounting program for Lake Mead is popular and well used (Figures 1 and 2).
+2. As of 2022 Arizona, California, and Nevada have saved and deposited ~3.1 million acre feet (MAF) -- above the current 2.7 MAF maximum limit (Figure 1).
+3. The states should raise their individual and combined conservation account limits to more transparently represent situation with account balances larger than the limits. At the same time, the limit on conservation account balances must stay below Lake Mead's physical active storage so conserved water is recoverable.
+4. Arizona has yet to conserve water at the annual volumes required for it's mandatory conservation targets (Figures 3, 4, 5, 6). In contrast, California and Nevada already have a track record of conserving at the mandatory conservation targets.
+
+## Requested Citation
+David E. Rosenberg (2024), "Lake Mead Water Conservation Accounts: Examples, Successes, Challenges, and Potential Improvements post-2026--Account Balances, Credits, and Debits." Utah State University. Logan, Utah. https://github.com/dzeke/ColoradoRiverCollaborate/tree/main/LakeMeadWaterConservationProgramAnalysis/ICS.
+
+```{r ICSplot, echo=FALSE, warning=FALSE, message=FALSE}
+
+# ICS-Plots.r
+#
+# Make stacked bar graph of state Intentionally Created Surplus holdings by year
+#
+# Data is USBR Water Accounting Reports: https://www.usbr.gov/lc/region/g4000/wtracct.html in source Excel file
+# Please report bugs/feedback to:
+#
+# Updated June 23, 2020 to include annual deposits and withdraws as year-to-year differnces
+#
+# Updated April 4, 2021 to look at ICS to DCP conversion
+#
+# Updated June 10, 2021 to include 2020 data.
+#
+# Updated January 13, 2026 to include up to 2024 data
+#
+# David E. Rosenberg
+# June 10, 2021
+# 
+# Utah State University
+# david.rosenberg@usu.edu
+
+rm(list = ls())  #Clear history
+
+#Load packages in one go
+#List of packages
+load.lib <- c("tidyverse", "readxl", "RColorBrewer", "dplyr", "expss", "reshape2", "pracma", "lubridate", "directlabels", "plyr", "stringr", "ggplot2", "ggpubr")
+# Then we select only the packages that aren't currently installed.
+install.lib <- load.lib[!load.lib %in% installed.packages()]
+# And finally we install the missing packages, including their dependency.
+for(lib in install.lib) install.packages(lib,dependencies=TRUE)
+# After the installation process completes, we load all packages.
+sapply(load.lib,require,character=TRUE)
+
+
+# Load Data
+
+# Read in state balances each year
+sExcelFile <- 'IntentionallyCreatedSurplus-Summary.xlsx'
+dfICSBalance <- read_excel(sExcelFile, sheet = "Balances")
+dfLimits <- read_excel(sExcelFile, sheet = "Capacities",  range = "A7:F10")
+
+#Read in max balance
+nMaxBalance <- read_excel(sExcelFile, sheet = "Capacities",  range = "A7:F10")
+#create a data frame
+#dfMaxBalance <- data.frame(Year=dfICSBalance$Year, MaxBal =  nMaxBalance$Total[2])
+
+#Read in max deposit per year
+dfMaxAnnualAmounts <- data.frame(Year=dfICSBalance$Year, MaxDeposit = nMaxBalance$Total[1], MaxWithdraw = nMaxBalance$Total[3])
+
+cColNames <- colnames(dfICSBalance)
+
+#Melt the data so state columns become a variable
+dfICSBalanceMelt <- melt(data = dfICSBalance,id.vars = "Year", measure.vars = cColNames[2:5])
+
+#Calculate the Current ICS balance as a fraction of current Mead Storage
+# Data from: https://www.usbr.gov/lc/region/g4000/hourly/levels.html
+nCurrMeadStorage <- 9934*1000  # May 1, 2021
+
+nCurrICSTotal <- dfICSBalanceMelt %>% filter(Year == 2023) %>% summarise(Total = sum(value))
+
+
+print("ICS balance as fraction of Mead storage")
+print(sprintf("%.1f%%",nCurrICSTotal$Total/nCurrMeadStorage*100))
+
+print("Percent of Upper Colorado River Basin area of entire continential US area")
+print(sprintf("%.1f%%",109800/3119884*100))
+
+palBlues <- brewer.pal(9, "Blues")
+
+#Plot #1. Stacked bar chart of account balance by state by year. Add individual state limits as secondary y axis
+# Prepare state limits as a cumulative amount
+cColNamesLimits <- colnames(dfLimits)
+dfLimitsMelt <- melt(data=dfLimits, id.vars="New levels with DCP", measure.vars = cColNamesLimits[2:5]) 
+dfMaxBalanceCum = dfLimitsMelt %>% filter(`New levels with DCP` == "Max Balance (AF)", variable != 'Total')
+#Reorder so Arizona is on top
+dfMaxBalanceCum$Order <- c(3,2,1,4)
+dfMaxBalanceCum <- dfMaxBalanceCum[order(dfMaxBalanceCum$Order),]
+#Calculate the cumulative total
+dfMaxBalanceCum$CumVal <- cumsum(dfMaxBalanceCum$value)
+#Replace the Arizona label
+dfMaxBalanceCum$StateAsChar <- as.character(dfMaxBalanceCum$variable)
+dfMaxBalanceCum$StateAsChar[3] <- "Total/Arizona"
+
+#Write out the dataframe with ICS balances by year to CSV so can use later in other scripts
+write.csv(dfICSBalanceMelt, file = "dfICSBalanceMelt.csv")
+
+lFontSize <- 14
+
+```
+
+# Figure 1. Lake Mead water conservation account balances
+```{r ICSFig1, echo=FALSE, warning=FALSE, message=FALSE}
+
+#Figure 1 - timeseries of bar plots of ICS balances
+
+fig1 <- ggplot() +
+  
+  geom_bar(data=dfICSBalanceMelt %>% filter(variable != "Mexico"), aes(fill=variable,y=value/1e6,x=Year),position="stack", stat="identity") +
+  
+  geom_hline(yintercept = nMaxBalance$Total[2]/1e6, size = 2) +
+  #geom_line(data=dfMaxBalance, aes(color="Max Balance", y=MaxBal/1e6,x=Year), size=2) +
+  
+  scale_fill_manual(name="Guide1",values = c(palBlues[3],palBlues[6],palBlues[9]),breaks=cColNames[2:4]) +
+  scale_color_manual(name="Guide2", values=c("Black")) +
+  
+  scale_x_continuous(breaks=seq(min(dfICSBalanceMelt$Year),max(dfICSBalanceMelt$Year),by=2),labels=seq(min(dfICSBalanceMelt$Year),max(dfICSBalanceMelt$Year),by=2)) +
+  
+  #Secondary scale with total max balance
+  #scale_y_continuous(breaks=seq(0,3,by=1),labels=seq(0,3,by=1), sec.axis = sec_axis(~. +0, name = "", breaks = c(nMaxBalance$Total[2])/1e6, labels = c("Max Balance"))) +
+  
+  #Secondary scale with individual state max balances
+  scale_y_continuous(breaks=seq(0,3,by=1),labels=seq(0,3,by=1), sec.axis = sec_axis(~. +0, name = "Maximum Balance", breaks = dfMaxBalanceCum$CumVal/1e6, labels = dfMaxBalanceCum$StateAsChar)) +
+  
+ 
+  guides(fill = guide_legend(keywidth = 1, keyheight = 1), color=FALSE) +
+  
+  
+  theme_bw() +
+  
+  labs(x="", y="Lake Mead Water Conservation\nAccount Balance\n(MAF)") +
+  theme(text = element_text(size=lFontSize),  legend.title = element_blank(), 
+          legend.text=element_text(size=lFontSize - 2),
+          legend.position= c(0.2,0.80))
+  
+fig1
+#ggsave("ICS-Figure1.png",fig1)
+
+```
+
+# Figure 2. Lake Mead conservation account deposits and withdrawals
+```{r ICSFig2, echo=FALSE, warning=FALSE, message=FALSE}
+  
+
+###########
+### Plot #2. Stacked bar chart of deposits to ICS accounts by state by year
+
+# Calculate credits/debits each year
+if (FALSE) {
+  #Read from Excel
+  dfICSDeposit <- read_excel(sExcelFile, sheet = "Deposits")
+
+  } else {
+  # Calculate from ICS balances as differences by year
+    
+  # Add a row of zeros year for the year before the first year
+  cFirstICSYear <- min(dfICSBalance$Year)
+  dfICSBalanceFirstYear <- dfICSBalance[1,]
+  dfICSBalanceFirstYear[1, 2:(ncol(dfICSBalanceFirstYear))] <- 0
+  dfICSBalanceFirstYear$Year <- cFirstICSYear - 1
+  dfICSBalanceFirstYear$Item <- paste("Balance - Dec",as.character(cFirstICSYear - 1) ,"(AF)")
+  
+  dfICSBalanceAll <- rbind(dfICSBalanceFirstYear, dfICSBalance)
+  
+  dfICSDeposit <- data.frame(diff(as.matrix(dfICSBalanceAll %>% select(Arizona,California,Nevada,Mexico,Total,Year))))
+  #Put the correct year back in
+  dfICSDeposit$Year <- dfICSBalance$Year[1:nrow(dfICSDeposit)]
+  }
+#Melt the data so state columns become a variable
+dfICSDepositMelt <- melt(data = dfICSDeposit,id.vars = "Year", measure.vars = cColNames[2:4])
+
+write.csv(dfICSDeposit, file = "dfICSDeposit.csv")
+write.csv(dfICSDepositMelt, file = "dfICSDepositMelt.csv")
+
+fig2 <- ggplot() +
+  
+  geom_bar(data=dfICSDepositMelt, aes(fill=variable,y=value/1e6,x=Year),position="stack", stat="identity") +
+  geom_line(data=dfMaxAnnualAmounts, aes(y=MaxDeposit/1e6,x=Year), size=2) +
+  geom_line(data=dfMaxAnnualAmounts, aes(color="Max Withdrawal", y=-MaxWithdraw/1e6,x=Year), size=2) +
+  
+  scale_fill_manual(name="Guide1",values = c(palBlues[3],palBlues[6],palBlues[9]),breaks=cColNames[2:4]) +
+  scale_color_manual(name="Guide2", values=c("Black","Black")) +
+  
+  scale_x_continuous(breaks=seq(min(dfICSDepositMelt$Year),max(dfICSDepositMelt$Year),by=2),labels=seq(min(dfICSDepositMelt$Year),max(dfICSDepositMelt$Year),by=2)) +
+  scale_y_continuous(sec.axis = sec_axis(~. +0, name = "", breaks = c(nMaxBalance$Total[1],-nMaxBalance$Total[3])/1e6, labels = c("Max Credit","Max Debit"))) +
+  
+  #scale_x_continuous(breaks = c(0,5,10,15,20,25),labels=c(0,5,10,15, 20,25), limits = c(0,as.numeric(dfMaxStor %>% filter(Reservoir %in% c("Mead")) %>% select(Volume))),
+  #                  sec.axis = sec_axis(~. +0, name = "Mead Level (feet)", breaks = dfMeadPoolsPlot$stor_maf, labels = dfMeadPoolsPlot$label)) +
+  
+  guides(fill = guide_legend(keywidth = 1, keyheight = 1), color = FALSE) +
+  
+  
+  theme_bw() +
+  
+  labs(x="", y="Credits (+) and Debits (-) to\nLake Mead Water Conservation Accounts\n(MAF per year)") +
+  theme(text = element_text(size=lFontSize ),  
+        axis.text.y = element_text(size = lFontSize),
+        legend.title = element_blank(),
+        legend.text=element_text(size=lFontSize - 2),
+        legend.position= c(1.2,0.6))
+
+fig2
+ggsave("ICS-Figure2.png", fig2)
+
+```

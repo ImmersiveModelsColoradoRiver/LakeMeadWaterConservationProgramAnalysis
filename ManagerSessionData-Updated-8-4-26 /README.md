@@ -5,9 +5,9 @@ This code iterates through an Excel sheet of compacted data from multiple differ
 ## Description of Contents
 1. **ManagerSessionsData.xlsx** - Excel sheet that is the input for both Python scripts. It contains condensed data from immersive model sessions for Lake Mead.
 2. **SessionDotPlot-Updated-8-4-2026.py** - This Python script reads through the input and produces a dot plot representation of Lake Mead Storage to Protection Ratio vs. Chosen Protection Volume. A secondary x-axis displays the corresponding protection elevation.
-3. **SessionDotPlotUpdated-8-4-2026.png** - This graph shows when collaborators in sessions succeeded and did not succeed in stabilizing Lake Mead's storage relative to the selected protection volume. Selected sessions are highlighted.
+3. **SessionDotPlotUpdated-8-4-2026.png** - This graph shows when collaborators in sessions succeeded and did not succeed in stabilizing Lake Mead's storage relative to the selected protection volume.
 4. **TimeSeries1000.py** - This Python script reads through the input and produces a time series graph for a selected immersive model session.
-5. **TimeSeries.png** - This line graph shows the storage and protection limit through the four modeled years for one immersive model session. A secondary y-axis displays the corresponding Lake Mead elevation.
+5. **TimeSeries.png** - This line graph shows the storage and protection limit through the modeled years for one immersive model session. A secondary y-axis displays the corresponding Lake Mead elevation.
 
 ## Directions to Reproduce Results
 

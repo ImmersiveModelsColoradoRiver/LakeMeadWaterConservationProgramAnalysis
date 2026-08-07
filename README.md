@@ -6,6 +6,7 @@ This repository contains the R and Python code to generate the figures in the pa
 
 1. **R-Fig1to5**: R code to generate figures 1 to 5 in the paper.
 1. **Python-Fig6to7**: Python code to generate figures 6 and 7.
+1. **LakeMeadWaterConservationProgramSuccessChallengesSuggestions_v4.docx**: Word file containing the manuscript.
 
 ## Directions to Generate Results
 

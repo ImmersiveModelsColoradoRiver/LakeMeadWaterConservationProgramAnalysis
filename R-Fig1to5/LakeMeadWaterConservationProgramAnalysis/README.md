@@ -1,4 +1,4 @@
-# Lake Mead Water Conservation Program Analysis (Intentionally Created Surplus; ICS)
+# R-Code: Lake Mead Water Conservation Program Analysis (Intentionally Created Surplus; ICS)
 ## Successes, Challenges, and Potential Improvements post 2026
 
 This folder generates four plots to support the Lake Mead Water Conservation Program Analysis. Within the Colorado River basin, the Lake Mead water conservation program is called Intentionally Created Surplus (ICS) program for Lake Mead. This program is defined in the 2007 Interim Guidelines and 2019 Drought Contingency Plans (Reclamation, 2007; 2019).
@@ -37,8 +37,8 @@ Open the files:
 1. **LakeMeadInflow.Rmd** - R mark down file with script to generate results in **LakeMeadInflow.pdf** file.
 
 ## Requested Citation
-David E. Rosenberg, Brittany Fager, Erik Porse (2026), “Lake Mead Water Conservation Program Analysis.” Utah
-State University. Logan, Utah. https://github.com/dzeke/ColoradoRiverCollaborate/tree/main/LakeMeadWaterConservationProgramAnalysis.
+David E. Rosenberg, Brittany Fager, Anabelle Myers, Erik Porse (2026), “Lake Mead Water Conservation Program Analysis.” Utah
+State University. Logan, Utah. https://github.com/ImmersiveModelsColoradoRiver/LakeMeadWaterConservationProgramAnalysis.
 
 ## References
 1. USBR. (2019). "Agreement Concerning Colorado River Drought Contingency Management and Operations." U.S. Bureau of Reclamation, Washington, DC. https://www.usbr.gov/dcp/finaldocs.html

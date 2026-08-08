@@ -10,7 +10,7 @@ This repository contains R and Python code to generate the figures in the paper 
 
 ## Directions to Generate Results
 
-Figures 1 to 5:
+Figures 1 to 5 and Tables 2 and A1:
 
 1. Move into the folder **R-Fig1to5**.
 1. Then move into the folder **LakeMeadWaterConservationProgramAnalysis**.

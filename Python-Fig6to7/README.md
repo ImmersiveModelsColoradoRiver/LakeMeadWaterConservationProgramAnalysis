@@ -46,7 +46,7 @@ To reproduce the results, follow the directions below.
    - Go to the device's downloads and unzip the repository.
 
 5. Open the Python script.
-   - Open the folder **ManagerSessionData-Updated-8-4-26**.
+   - Open the folder **Python-Fig6to7**.
    - Open either **SessionDotPlot-Updated-8-4-2026.py** or **TimeSeries1000.py** in PyCharm.
 
 6. Select a Python interpreter.

@@ -10,10 +10,9 @@ Each dot represents one modeled year within a manager session.
     • y-axis: Storage-to-protection ratio (Storage / Protection Volume)
 
 Dots are:
-    • Blue by default.
-    • Red if the Reclamation user chose to sell water.
-    • Circle by default.
-    • Diamond if the ratio of storage to protection storage is below 1.0.
+    • Blue if the elevation was kept above the chosen protection elevation
+    • Red if the Reclamation user chose to sell water and went
+        below their protection elevation.
 
 
 """
@@ -171,23 +170,6 @@ for idx, ps in enumerate(protect_storages):
 # Convert list to NumPy array
 dimensionless_list = np.array(dimensionless_list)
 
-
-# -----------------------------
-# Sessions to highlight
-# -----------------------------
-
-# Dictionary of session names and their desired highlight color
-highlight_sessions = {
-    "2025-5-22": "red",
-    "2025-8-18": "red",
-    "2025-10-27": "red",
-    "2026-4-22": "red",
-    "2026-6-23": "red",
-    "2026-7-20": "red",
-    "2026-7-30": "red"
-}
-
-
 # -----------------------------
 # Create figure
 # -----------------------------
@@ -221,10 +203,6 @@ for i in range(len(protect_storages)):
 
     # Use diamonds below 1.0 and circles above 1.0
     markers = ["D" if y < 1.0 else "o" for y in y_values]
-
-    # Override colors if the session is highlighted
-    if session_names[i] in highlight_sessions:
-        colors = [highlight_sessions[session_names[i]]] * len(y_values)
 
     # Plot every point individually
     for x, y, c, m in zip(x_values, y_values, colors, markers):

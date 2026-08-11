@@ -88,7 +88,7 @@ David E. Rosenberg (2020). "Lake Mead Inflow". Utah State University. Logan, Uta
 #   # After the installation process completes, we load all packages.
 #   sapply(load.lib,require,character=TRUE)
 
-  here::i_am("HistoricalCurrentReservoirData/LakeMeadStorageICS.r")
+  here::i_am("LakeMeadWaterConservationProgramAnalysis/LakeMeadStorageICS.r")
   
   ## Read in functions to:
   #     Auto load USBR data
@@ -98,8 +98,8 @@ David E. Rosenberg (2020). "Lake Mead Inflow". Utah State University. Logan, Uta
   source("../AutoReadUSBRData/AutoReadUSBRData.r") 
   
   # Read in the Reclamation Hydro Data
-  lResData <- fReadReclamationHydroData(FromHydroData = TRUE)
-  #lResData <- fReadReclamationHydroData(FromHydroData = FALSE)  
+  #lResData <- fReadReclamationHydroData(FromHydroData = TRUE)
+  lResData <- fReadReclamationHydroData(FromHydroData = FALSE)  
 
   # Read in the ICS data
   lICSdata <- fReadICSData()

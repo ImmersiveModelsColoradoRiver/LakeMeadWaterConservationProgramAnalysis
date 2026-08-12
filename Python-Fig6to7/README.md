@@ -1,7 +1,6 @@
-# Python Figures 6 and 7
+# ManagerSessionData-Updated-8-4-26
 
 This code iterates through an Excel sheet of compacted data from multiple different immersive model sessions for Lake Mead and creates graphs that show the differences and successes of each session.
-This code generates Figures 6 and 7 in the paper.
 
 ## Description of Contents
 1. **ManagerSessionsData.xlsx** - Excel sheet that is the input for both Python scripts. It contains condensed data from immersive model sessions for Lake Mead.
@@ -46,7 +45,7 @@ To reproduce the results, follow the directions below.
    - Go to the device's downloads and unzip the repository.
 
 5. Open the Python script.
-   - Open the folder **Python-Fig6to7**.
+   - Open the folder **ManagerSessionData-Updated-8-4-26**.
    - Open either **SessionDotPlot-Updated-8-4-2026.py** or **TimeSeries1000.py** in PyCharm.
 
 6. Select a Python interpreter.

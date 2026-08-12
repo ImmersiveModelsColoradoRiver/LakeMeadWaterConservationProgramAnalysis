@@ -10,7 +10,7 @@ The plot displays:
     • A secondary y-axis showing the corresponding Lake Mead elevation
 
 The session to plot is selected using its session name (for example,
-"2025-10-27").
+"2025-5-22").
 """
 import numpy as np
 import pandas as pd
@@ -123,7 +123,7 @@ all_years = np.array(all_years)
 # -----------------------------
 
 # Specify the desired manager session
-target_session = "2025-10-27"
+target_session = "2025-5-22"
 
 # Find the index of that session
 session_index = session_names.index(target_session)
@@ -296,6 +296,9 @@ for i, s in enumerate(storage_ticks):
     if np.isclose(s, 5.7):
         elev_labels[i] = 1020
 
+    if np.isclose(s, selected_protect_s):
+        elev_labels[i] = selected_protect_e
+
 
 # Apply tick locations
 ax1.set_yticks(storage_ticks)
@@ -326,7 +329,7 @@ ax2.tick_params(axis='y', labelsize=17)
 ax1.legend(loc='best', fontsize=17, frameon=True)
 
 # Save the figure
-plt.savefig('TimeSeries.png')
+plt.savefig('TimeSeries-2025-5-22.png')
 
 # Display the figure
 plt.show()

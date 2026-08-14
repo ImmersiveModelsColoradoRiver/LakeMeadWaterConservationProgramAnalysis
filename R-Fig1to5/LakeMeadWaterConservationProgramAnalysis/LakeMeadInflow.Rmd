@@ -141,6 +141,7 @@ start.date <- "1990-01-01"
 end.date <- sDate
 
 bReadFromUSGS <- FALSE
+#bReadFromUSGS <- TRUE
 
 if(bReadFromUSGS == TRUE) {
   # Read in stream flow data from the USGS application programming interface

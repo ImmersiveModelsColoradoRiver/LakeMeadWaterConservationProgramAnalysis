@@ -214,8 +214,8 @@ parameterCd <- "00060" # Discharge in cfs
 start.date <- "1990-01-01"
 end.date <- sDate
 
-
-bReadFromUSGS <- TRUE
+bReadFromUSGS <- FALSE
+#bReadFromUSGS <- TRUE
 
 if(bReadFromUSGS == TRUE) {
   # Read in stream flow data from the USGS application programming interface

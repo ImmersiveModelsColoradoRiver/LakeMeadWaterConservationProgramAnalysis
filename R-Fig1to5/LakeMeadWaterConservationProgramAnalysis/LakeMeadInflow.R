@@ -215,7 +215,7 @@ start.date <- "1990-01-01"
 end.date <- sDate
 
 
-bReadFromUSGS <- FALSE
+bReadFromUSGS <- TRUE
 
 if(bReadFromUSGS == TRUE) {
   # Read in stream flow data from the USGS application programming interface
@@ -233,10 +233,11 @@ if(bReadFromUSGS == TRUE) {
   }
   # Save the API data to csv to improve reproducibility and in case no internet
   write.csv(dataUSGS, "USGSFlowData-MeadInflow.csv")
-} else {
+
+  } else {
+  # Read in inflow data from cached local copy - the last time call to USGC API was called
   dataUSGS <- read.csv("USGSFlowData-MeadInflow.csv")
   # Remove the 1st column
-
   dataUSGS <- dataUSGS[,2:ncol(dataUSGS)]
 }
 

@@ -1,4 +1,4 @@
-# ManagerSessionData-Updated-8-4-26
+# Python-Fig6to7
 
 This code iterates through an Excel sheet of compacted data from multiple different immersive model sessions for Lake Mead and creates graphs that show the differences and successes of each session.
 
@@ -6,8 +6,8 @@ This code iterates through an Excel sheet of compacted data from multiple differ
 1. **ManagerSessionsData.xlsx** - Excel sheet that is the input for both Python scripts. It contains condensed data from immersive model sessions for Lake Mead.
 2. **SessionDotPlot-Updated-8-4-2026.py** - This Python script reads through the input and produces a dot plot representation of Lake Mead Storage to Protection Ratio vs. Chosen Protection Volume. A secondary x-axis displays the corresponding protection elevation.
 3. **SessionDotPlotUpdated-8-4-2026.png** - This graph shows when collaborators in sessions succeeded and did not succeed in stabilizing Lake Mead's storage relative to the selected protection volume.
-4. **TimeSeries1000.py** - This Python script reads through the input and produces a time series graph for a selected immersive model session.
-5. **TimeSeries.png** - This line graph shows the storage and protection limit through the modeled years for one immersive model session. A secondary y-axis displays the corresponding Lake Mead elevation.
+4. **TimeSeries-2025-10-27.py** - This Python script reads through the input and produces a time series graph for a selected immersive model session.
+5. **TimeSeries-2025-10-27.png** - This line graph shows the storage and protection limit through the modeled years for one immersive model session. A secondary y-axis displays the corresponding Lake Mead elevation.
 
 ## Directions to Reproduce Results
 
@@ -46,7 +46,7 @@ To reproduce the results, follow the directions below.
 
 5. Open the Python script.
    - Open the folder **ManagerSessionData-Updated-8-4-26**.
-   - Open either **SessionDotPlot-Updated-8-4-2026.py** or **TimeSeries1000.py** in PyCharm.
+   - Open either **SessionDotPlot-Updated-8-4-2026.py** or **TimeSeries-2025-10-27.py** in PyCharm.
 
 6. Select a Python interpreter.
 
@@ -60,4 +60,4 @@ To reproduce the results, follow the directions below.
 
 8. Click the green play arrow at the top of the page.
 
-9. The selected Python script will generate its corresponding figure (**SessionDotPlotUpdated-8-4-2026.png** or **TimeSeries.png**) in the same folder.
+9. The selected Python script will generate its corresponding figure (**SessionDotPlotUpdated-8-4-2026.png** or **TimeSeries-2025-10-27.png**) in the same folder.

@@ -79,7 +79,7 @@ David E. Rosenberg (2020). "Lake Mead Inflow". Utah State University. Logan, Uta
 #Load packages in one go
 #   #List of packages
 #   load.lib <- c("tidyverse", "readxl", "RColorBrewer", "dplyr", "expss", "reshape2", "pracma", "lubridate", "directlabels", "plyr", "stringr", "ggplot2", "ggpubr", "ggrepel", "rvest", "tidyr", "dataRetrieval", "zoo", "here", "knitr")
-#   
+# 
 #  # Then we select only the packages that aren't currently installed.
 #   install.lib <- load.lib[!load.lib %in% installed.packages()]
 # # And finally we install the missing packages, including their dependency.
@@ -140,21 +140,22 @@ parameterCd <- "00060" # Discharge in cfs
 start.date <- "1990-01-01"
 end.date <- sDate
 
-for(site in siteNumbers){
-  site_info <- readNWISsite(site) 
-  dataTemp <- readNWISdata(siteNumbers = site, parameterCd = parameterCd, startDate = start.date, endDate = end.date)
-  dataTemp$StationName <- site_info$station_nm
 
-    if(site == siteNumbers[1]) {
-    dataUSGS <- dataTemp
+  # Read in stream flow data from the USGS application programming interface
+  for(site in siteNumbers){
+    site_info <- readNWISsite(site) 
+    dataTemp <- readNWISdata(siteNumbers = site, parameterCd = parameterCd, startDate = start.date, endDate = end.date)
+    dataTemp$StationName <- site_info$station_nm
+  
+      if(site == siteNumbers[1]) {
+      dataUSGS <- dataTemp
+      }
+    else {
+      dataUSGS <- rbind(dataUSGS, dataTemp)
+      }
     }
-  else {
-    dataUSGS <- rbind(dataUSGS, dataTemp)
-    }
-  }
-
-# Save the API data to csv to improve reproducibility and in case no internet
-write.csv(dataUSGS, "USGSFlowData-MeadInflow.csv")
+    # Save the API data to csv to improve reproducibility and in case no internet
+    write.csv(dataUSGS, "USGSFlowData-MeadInflow.csv")
 
 #Rename the data column to a useful name
 cColHeaders <- colnames(dataUSGS)

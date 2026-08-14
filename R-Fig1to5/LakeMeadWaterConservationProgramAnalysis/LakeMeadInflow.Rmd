@@ -140,22 +140,47 @@ parameterCd <- "00060" # Discharge in cfs
 start.date <- "1990-01-01"
 end.date <- sDate
 
+bReadFromUSGS <- FALSE
 
+if(bReadFromUSGS == TRUE) {
   # Read in stream flow data from the USGS application programming interface
   for(site in siteNumbers){
     site_info <- readNWISsite(site) 
     dataTemp <- readNWISdata(siteNumbers = site, parameterCd = parameterCd, startDate = start.date, endDate = end.date)
     dataTemp$StationName <- site_info$station_nm
-  
-      if(site == siteNumbers[1]) {
+    
+    if(site == siteNumbers[1]) {
       dataUSGS <- dataTemp
-      }
+    }
     else {
       dataUSGS <- rbind(dataUSGS, dataTemp)
-      }
     }
-    # Save the API data to csv to improve reproducibility and in case no internet
-    write.csv(dataUSGS, "USGSFlowData-MeadInflow.csv")
+  }
+  # Save the API data to csv to improve reproducibility and in case no internet
+  write.csv(dataUSGS, "USGSFlowData-MeadInflow.csv")
+} else {
+  dataUSGS <- read.csv("USGSFlowData-MeadInflow.csv")
+  # Remove the 1st column
+
+  dataUSGS <- dataUSGS[,2:ncol(dataUSGS)]
+}
+
+
+  # # Read in stream flow data from the USGS application programming interface
+  # for(site in siteNumbers){
+  #   site_info <- readNWISsite(site) 
+  #   dataTemp <- readNWISdata(siteNumbers = site, parameterCd = parameterCd, startDate = start.date, endDate = end.date)
+  #   dataTemp$StationName <- site_info$station_nm
+  # 
+  #     if(site == siteNumbers[1]) {
+  #     dataUSGS <- dataTemp
+  #     }
+  #   else {
+  #     dataUSGS <- rbind(dataUSGS, dataTemp)
+  #     }
+  #   }
+  #   # Save the API data to csv to improve reproducibility and in case no internet
+  #   write.csv(dataUSGS, "USGSFlowData-MeadInflow.csv")
 
 #Rename the data column to a useful name
 cColHeaders <- colnames(dataUSGS)

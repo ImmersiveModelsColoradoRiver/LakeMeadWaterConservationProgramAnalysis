@@ -3,11 +3,12 @@
 This code iterates through an Excel sheet of compacted data from multiple different immersive model sessions for Lake Mead and creates graphs that show the differences and successes of each session.
 
 ## Description of Contents
-1. **ManagerSessionsData.xlsx** - Excel sheet that is the input for both Python scripts. It contains condensed data from immersive model sessions for Lake Mead.
-2. **SessionDotPlot-Updated-8-4-2026.py** - This Python script reads through the input and produces a dot plot representation of Lake Mead Storage to Protection Ratio vs. Chosen Protection Volume. A secondary x-axis displays the corresponding protection elevation.
-3. **SessionDotPlotUpdated-8-4-2026.png** - This graph shows when collaborators in sessions succeeded and did not succeed in stabilizing Lake Mead's storage relative to the selected protection volume.
-4. **TimeSeries-2026-3-17.py** - This Python script reads through the input and produces a time series graph for a selected immersive model session.
-5. **TimeSeries-2026-3-17.png** - This line graph shows the storage and protection limit through the modeled years for one immersive model session. A secondary y-axis displays the corresponding Lake Mead elevation.
+1. **ManagerSessionsData.xlsx** - Excel sheet that is the input for both Python scripts. It contains condensed results -- USBR protection elevations/volumes, reservoir elevation/storage volumes, and calculated ratio of storage to protection volume from immersive model sessions for Lake Mead.
+2. **LakeMeadWaterBankDivideInflow2026-3-17-Anonymized.xlsx** - Excel model file with collaborator entries used in the model session on March 17, 2026 shown in Figure 6. The worksheet *Readme-Directions* provides a summary of the model file. The worsheet *Master* contains entries for the model session.
+3. **SessionDotPlot-Updated-8-4-2026.py** - This Python script reads through the input and produces a dot plot representation of Lake Mead Storage to Protection Ratio vs. Chosen Protection Volume. A secondary x-axis displays the corresponding protection elevation.
+4. **SessionDotPlotUpdated-8-4-2026.png** - This graph shows when collaborators in sessions succeeded and did not succeed in stabilizing Lake Mead's storage relative to the selected protection volume.
+5. **TimeSeries-2026-3-17.py** - This Python script reads through the input and produces a time series graph for a selected immersive model session.
+6. **TimeSeries-2026-3-17.png** - This line graph shows the storage and protection limit through the modeled years for one immersive model session. A secondary y-axis displays the corresponding Lake Mead elevation.
 
 ## Directions to Reproduce Results
 
@@ -61,3 +62,9 @@ To reproduce the results, follow the directions below.
 8. Click the green play arrow at the top of the page.
 
 9. The selected Python script will generate its corresponding figure (**SessionDotPlotUpdated-8-4-2026.png** or **TimeSeries-2026-3-17.png**) in the same folder.
+
+## Model Repository
+
+A blank version of the immersive model file with full documentation and directions can be found on Hydroshare at:
+
+Rosenberg, D. E., Porse, E., Akbar, H., Myers, A., Fager, B. (2026). Immersive Model for Lake Mead Based on the Principle of Divide Reservoir Inflow, HydroShare, http://www.hydroshare.org/resource/1fcd5325c0a7400099f1698bc72cecd7.

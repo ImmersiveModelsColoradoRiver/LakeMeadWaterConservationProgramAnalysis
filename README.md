@@ -26,11 +26,11 @@ Figures 6 to 7:
 
 ## Immersive Model Repository
 
-A blank version of the immersive model file with full documentation and directions used at the *beginning* of model sessions can be found on Hydroshare at:
+A **blank** version of the immersive model file with full documentation and directions used at the **beginning** of model sessions can be found on Hydroshare at:
 
 Rosenberg, D. E., Porse, E., Akbar, H., Myers, A., Fager, B. (2026). Immersive Model for Lake Mead Based on the Principle of Divide Reservoir Inflow, HydroShare, http://www.hydroshare.org/resource/1fcd5325c0a7400099f1698bc72cecd7.
 
-The completed version of the model file for the session used to generate Figure 6 is available within the folder **Python-Fig6to7**. See the readme.md within for further explanation.
+The **completed** version of the model file for the session used to generate Figure 6 is available within the folder **Python-Fig6to7**. See the readme.md within for further explanation.
 
 ## Persistent Version of Repository
 

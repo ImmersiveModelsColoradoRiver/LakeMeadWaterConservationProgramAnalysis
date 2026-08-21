@@ -25,8 +25,12 @@ Figures 6 to 7:
 1. Follow the directions in the **README.md** file within this folder.
 
 
+## Persistent Version of Repository
+
+A persistent version of the repository can be found on Hydroshare at:
+
+Rosenberg, D. E., Myers, A. (2026). Lake Mead Water Conservation Program Analysis, HydroShare, http://www.hydroshare.org/resource/71a971cd51b64ef8a7030f25639c0a3c
+
 ## Requested Citation
 
-David E. Rosenberg, Brittany Fager, Anabelle Myers, Erik Porse (2026), “The Lake Mead Water Conservation Program: Reducing Users’ Conflicting Risks of Declining Flows with more Adaptation and Autonomy.” Utah
-State University. Logan, Utah. https://github.com/ImmersiveModelsColoradoRiver/LakeMeadWaterConservationProgramAnalysis.
-
+David E. Rosenberg, Brittany Fager, Anabelle Myers, Erik Porse (2026), “The Lake Mead Water Conservation Program: Reducing Users’ Conflicting Risks of Declining Flows with more Adaptation and Autonomy.” Hydroshare. Rosenberg, D. E., Myers, A. (2026). Lake Mead Water Conservation Program Analysis, HydroShare, http://www.hydroshare.org/resource/71a971cd51b64ef8a7030f25639c0a3c.

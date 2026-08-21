@@ -10,6 +10,8 @@ This repository contains R and Python code to generate the figures in the paper 
 
 ## Directions to Generate Results
 
+1. Download the entire folder structure to a local folder. If the path is too long, move to a local folder such as C:\Users\LakeMead.
+
 Figures 1 to 5 and Tables 2 and A1:
 
 1. Move into the folder **R-Fig1to5**.
@@ -24,6 +26,7 @@ Figures 6 to 7:
 
 
 ## Requested Citation
+
 David E. Rosenberg, Brittany Fager, Anabelle Myers, Erik Porse (2026), “The Lake Mead Water Conservation Program: Reducing Users’ Conflicting Risks of Declining Flows with more Adaptation and Autonomy.” Utah
 State University. Logan, Utah. https://github.com/ImmersiveModelsColoradoRiver/LakeMeadWaterConservationProgramAnalysis.
 

@@ -15,13 +15,16 @@ It also includes the Tables for the manuscript
 Note - Available Water = Inflow - Evaporation.
 
 ## View Results
+
 Open the files:
+
 * **LakeMeadStorageICS.pdf** - Figures 1 to 3.
 * **FixAnnualCredits.pptx** - Figure 4.
 * **LakeMeadInflow.pdf** - Figure 5.
 * **Tables-LakeMeadConservationProgram.xlsx** - Tables 2 and A1.
 
 ## Requirements to Run
+
 * R version 4.1.1. Download from https://cran.r-project.org/.
 * R Studio 1.1.456. Download from https://www.rstudio.com/.
 
@@ -60,18 +63,16 @@ Open the files:
 
 1. **R-Fig1to5\AutoReadUSBRData** - R functions to retrieve reservoir storage and elevation data from Reclamation's web portal. See further information in the **README.md** file within that folder.
 1. **R-Fig1to5\EvapData** - Evaporation data for Lake Powell and Lake Mead in csv format.
-1. **R-Fig1to5\Old** - Prior versions of scripts and files in the main folder.
 
 ## Additional Notes
 
-Files **LakeMeadStorageICS.Rmd** and **LakeMeadInflow.Rmd** are currently configured to retrieve cached Reclamation reservoir storage/elevation data in the folder **AutoReadUSBRData**.
+Files **LakeMeadStorageICS.Rmd** and **LakeMeadInflow.Rmd** are currently configured to retrieve cached Reclamation reservoir storage/elevation data in the folder **AutoReadUSBRData** when the script was run in August 2026.
 If you wish to download the most recent data from Reclamation's webserver:
 
 1. Within the **LakeMeadStorageICS.Rmd** file, uncomment Line 69 and comment Line 70 (add a #).
 1. Within the **LakeMeadInflow.Rmd** file, uncomment Line 101 and comment Line 102 (add a #).
 
 For more information about these data retrieval functions, see the **README.md** file within the subfolder **R-Fig1to5\AutoReadUSBRData**.
-
 
 ## Requested Citation
 

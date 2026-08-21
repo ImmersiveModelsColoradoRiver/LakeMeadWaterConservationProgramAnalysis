@@ -24,6 +24,11 @@ Figures 6 to 7:
 1. Move into the folder **Python-Fig6to7**.
 1. Follow the directions in the **README.md** file within this folder.
 
+## Immersive Model Repository
+
+A blank version of the immersive model file with full documentation and directions used at the *beginning* of model sessions can be found on Hydroshare at:
+
+Rosenberg, D. E., Porse, E., Akbar, H., Myers, A., Fager, B. (2026). Immersive Model for Lake Mead Based on the Principle of Divide Reservoir Inflow, HydroShare, http://www.hydroshare.org/resource/1fcd5325c0a7400099f1698bc72cecd7.
 
 ## Persistent Version of Repository
 
